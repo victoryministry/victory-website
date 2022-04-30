@@ -1,23 +1,11 @@
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Container,
-  createStyles,
-  Divider,
-  Grid,
-  Image,
-  Stack,
-  Text,
-  Title
-} from '@mantine/core'
-import { NextPage } from 'next'
-import Header from '~/components/Header'
-import Nav from '~/components/Nav'
 import { Icon } from '@iconify/react'
+import { Box, Button, createStyles, Text, Title } from '@mantine/core'
+import { NextPage } from 'next'
 import about from '~/assets/about.webp'
 import Footer from '~/components/Footer'
+import Header from '~/components/Header'
 import Article from '~/components/Home/Article'
+import Nav from '~/components/Nav'
 
 const useStyles = createStyles((theme) => ({}))
 

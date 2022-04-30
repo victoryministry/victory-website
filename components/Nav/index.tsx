@@ -6,15 +6,20 @@ import {
   Drawer,
   Image,
   Stack,
-  Text,
   Title
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import Link from 'next/link'
 import logo from '~/assets/logo.webp'
+import { Menu } from '~/types/menu'
 import MenuList from './MenuList'
 
-const MENUS = ['home', 'about', 'gallery', 'blog']
+export const MENUS: Menu[] = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Articles', href: '/articles' }
+]
 
 const useStyles = createStyles((theme) => ({
   nav: {
@@ -91,15 +96,10 @@ export default function Nav() {
         overlayBlur={3}>
         <Box className={classes.drawerContent}>
           <Stack spacing="sm">
-            {MENUS.map((menu, index) => (
-              <Link
-                href={{
-                  pathname: `/${menu}`
-                }}
-                key={index}
-                passHref>
+            {MENUS.map(({ href, label }, index) => (
+              <Link href={href} key={index} passHref>
                 <Button variant="subtle" component="a" uppercase size="md">
-                  {menu}
+                  {label}
                 </Button>
               </Link>
             ))}
