@@ -20,10 +20,23 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.md
   },
 
+  logoWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing.xs
+  },
+
   logo: {
     maxWidth: '60px',
     border: '1px black solid',
     minHeight: '60px'
+  },
+
+  logoTitle: {
+    fontSize: theme.fontSizes.lg,
+    [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
+      fontSize: theme.fontSizes.xl
+    }
   },
 
   burgerRoot: {
@@ -46,12 +59,7 @@ export default function Nav() {
   return (
     <>
       <Box component="nav" className={classes.nav}>
-        <Box
-          sx={(theme) => ({
-            display: 'flex',
-            alignItems: 'center',
-            gap: theme.spacing.xs
-          })}>
+        <Box className={classes.logoWrapper}>
           <Image
             src={logo.src}
             alt="church logo"
@@ -59,15 +67,7 @@ export default function Nav() {
             classNames={{ image: classes.logo }}
           />
 
-          <Title
-            sx={(theme) => ({
-              fontSize: theme.fontSizes.lg,
-              [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
-                fontSize: theme.fontSizes.xl
-              }
-            })}>
-            Victory Ministry
-          </Title>
+          <Title className={classes.logoTitle}>Victory Ministry</Title>
         </Box>
 
         <Burger
