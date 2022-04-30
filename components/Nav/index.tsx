@@ -1,17 +1,8 @@
-import {
-  Box,
-  Burger,
-  Button,
-  createStyles,
-  Drawer,
-  Image,
-  Stack,
-  Title
-} from '@mantine/core'
+import { Box, Burger, createStyles, Image, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import Link from 'next/link'
 import logo from '~/assets/logo.webp'
 import { Menu } from '~/types/menu'
+import MenuDrawer from './MenuDrawer'
 import MenuList from './MenuList'
 
 export const MENUS: Menu[] = [
@@ -85,27 +76,10 @@ export default function Nav() {
           classNames={{ root: classes.burgerRoot }}
         />
 
-        <MenuList />
+        <MenuList menus={MENUS} />
       </Box>
 
-      <Drawer
-        opened={opened}
-        onClose={handler.close}
-        position="right"
-        overlayOpacity={0.55}
-        overlayBlur={3}>
-        <Box className={classes.drawerContent}>
-          <Stack spacing="sm">
-            {MENUS.map(({ href, label }, index) => (
-              <Link href={href} key={index} passHref>
-                <Button variant="subtle" component="a" uppercase size="md">
-                  {label}
-                </Button>
-              </Link>
-            ))}
-          </Stack>
-        </Box>
-      </Drawer>
+      <MenuDrawer menus={MENUS} opened={opened} onClose={handler.close} />
     </>
   )
 }
