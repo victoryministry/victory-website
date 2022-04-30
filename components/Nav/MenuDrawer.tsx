@@ -38,6 +38,7 @@ export default function MenuDrawer({
             <Link href={href} key={index} passHref>
               <Button
                 variant={href === pathname ? 'light' : 'subtle'}
+                onClick={onClose}
                 component="a"
                 uppercase
                 size="md">
