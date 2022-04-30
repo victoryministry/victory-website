@@ -24,6 +24,12 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.md
   },
 
+  logo: {
+    maxWidth: '60px',
+    border: '1px black solid',
+    minHeight: '60px'
+  },
+
   burgerRoot: {
     [`@media (min-width: ${theme.breakpoints.sm}px)`]: {
       display: 'none'
@@ -54,11 +60,7 @@ export default function Nav() {
             src={logo.src}
             alt="church logo"
             radius="md"
-            sx={{
-              maxWidth: '60px',
-              border: '1px black solid',
-              minHeight: '60px'
-            }}
+            classNames={{ image: classes.logo }}
           />
 
           <Title
