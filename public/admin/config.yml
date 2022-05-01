@@ -31,8 +31,8 @@ collections:
         file: 'contents/home.md'
         fields:
           - { label: 'Title', name: 'title', widget: 'string' }
-      - label: 'Home Page'
-        name: 'home'
-        file: 'contents/home.md'
+      - label: 'About Page'
+        name: 'about'
+        file: 'contents/about.md'
         fields:
           - { label: 'Title', name: 'title', widget: 'string' }
