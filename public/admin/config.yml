@@ -1,0 +1,38 @@
+backend:
+  name: git-gateway
+  branch: main
+publish_mode: editorial_workflow
+media_folder: public/content/uploads
+public_folder: /content/uploads
+site_url: 'https://victory-ministry.netlify.app/'
+collections:
+  - label: 'Galleries'
+    name: 'galleries'
+    folder: 'contents/galleries'
+    create: true
+    fields:
+      - label: 'Name'
+        name: 'name'
+        widget: 'string'
+      - label: 'Images'
+        name: 'images'
+        widget: 'list'
+        fields:
+          - { label: 'Caption', name: 'caption', widget: 'string' }
+          - label: 'Image'
+            name: 'image'
+            format: 'DD MMM YYYY'
+            widget: 'image'
+  - label: 'Pages'
+    name: 'pages'
+    files:
+      - label: 'Home Page'
+        name: 'home'
+        file: 'contents/home.md'
+        fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
+      - label: 'Home Page'
+        name: 'home'
+        file: 'contents/home.md'
+        fields:
+          - { label: 'Title', name: 'title', widget: 'string' }
