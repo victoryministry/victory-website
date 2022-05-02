@@ -10,7 +10,7 @@ collections:
     name: 'event'
     folder: 'contents/events'
     create: true
-    media_folder: '/{{media_folder}}'
+    media_folder: '/{{media_folder}}/{{slug}}'
     public_folder: '{{public_folder}}/{{slug}}'
     fields:
       - label: 'Title'
