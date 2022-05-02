@@ -15,7 +15,7 @@ const Gallery: NextPage = () => {
   return (
     <>
       <Nav />
-      <Header />
+      <Header title='Events' />
 
       <Box component="main">
         <Article imageSrc={about.src} withDivider>

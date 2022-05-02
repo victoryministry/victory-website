@@ -8,16 +8,18 @@ export type ArticleProps = {
   withDivider?: boolean
 }
 
-const useStyles = createStyles((theme, { textOnRight }: ArticleProps) => ({
-  wrapper: {
-    paddingTop: theme.spacing.md,
-    paddingBottom: theme.spacing.md,
+const useStyles = createStyles(
+  (theme, { textOnRight }: Pick<ArticleProps, 'textOnRight'>) => ({
+    wrapper: {
+      paddingTop: theme.spacing.md,
+      paddingBottom: theme.spacing.md,
 
-    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
-      textAlign: textOnRight ? 'right' : 'left'
+      [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+        textAlign: textOnRight ? 'right' : 'left'
+      }
     }
-  }
-}))
+  })
+)
 
 export default function Article({
   textOnRight,

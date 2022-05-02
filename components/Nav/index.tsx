@@ -8,8 +8,8 @@ import MenuList from './MenuList'
 export const MENUS: Menu[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Articles', href: '/articles' }
+  { label: 'Events', href: '/events' },
+  { label: 'Renungan', href: '/renungan' }
 ]
 
 const useStyles = createStyles((theme) => ({

@@ -15,7 +15,7 @@ const About: NextPage = () => {
   return (
     <>
       <Nav />
-      <Header />
+      <Header title='About Us' />
 
       <Box component="main">
         <Article imageSrc={about.src} withDivider>
