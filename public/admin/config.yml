@@ -10,7 +10,7 @@ collections:
     name: 'event'
     folder: 'contents/events'
     create: true
-    media_folder: '{{media_folder}}'
+    media_folder: '/{{media_folder}}'
     public_folder: '{{public_folder}}/{{slug}}'
     fields:
       - label: 'Title'
@@ -22,12 +22,15 @@ collections:
       - label: 'Location'
         name: 'location'
         widget: 'string'
+        required: false
       - label: 'Description'
         name: 'description'
         widget: 'text'
+        required: false
       - label: 'Images'
         name: 'images'
         widget: 'list'
+        required: false
         fields:
           - { label: 'Caption', name: 'caption', widget: 'string' }
           - label: 'Image'
