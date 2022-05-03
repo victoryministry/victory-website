@@ -18,7 +18,7 @@ const useStyles = createStyles(
   })
 )
 
-export default function Article({
+export default function ArticleWithImage({
   textOnRight,
   imageSrc,
   children,

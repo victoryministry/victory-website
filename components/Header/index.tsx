@@ -1,4 +1,5 @@
-import { Box, createStyles, Text } from '@mantine/core'
+import { Icon } from '@iconify/react'
+import { Box, Button, createStyles, Text } from '@mantine/core'
 import header from '~/assets/header.webp'
 
 export type HeaderProps = {
@@ -6,6 +7,7 @@ export type HeaderProps = {
   subtitle?: string
   imageSrc?: string
   imageHeight?: string | number
+  withButton?: boolean
 }
 
 const useStyles = createStyles(
@@ -27,17 +29,18 @@ const useStyles = createStyles(
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      '& > *': {
+        flexShrink: 0
+      }
     },
     headerText: {
       color: 'white',
-      fontSize: 40,
-      textTransform: 'uppercase'
+      fontSize: 72
     },
     subHeaderText: {
       color: 'white',
-      fontSize: theme.fontSizes.xl,
-      textTransform: 'uppercase'
+      fontSize: 40
     }
   })
 )
@@ -46,7 +49,8 @@ export default function Header({
   title,
   subtitle,
   imageHeight,
-  imageSrc
+  imageSrc,
+  withButton
 }: HeaderProps) {
   const { classes } = useStyles({ imageHeight, imageSrc })
 
@@ -58,6 +62,11 @@ export default function Header({
       <Text align="center" className={classes.subHeaderText}>
         {subtitle}
       </Text>
+      {withButton && (
+        <Button size="lg" rightIcon={<Icon icon="carbon:arrow-right" />}>
+          Selengkapnya
+        </Button>
+      )}
     </Box>
   )
 }

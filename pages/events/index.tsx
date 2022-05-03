@@ -1,23 +1,11 @@
-import { Icon } from '@iconify/react'
-import {
-  Box,
-  Button,
-  Card,
-  Container,
-  createStyles,
-  Grid,
-  Text,
-  Title
-} from '@mantine/core'
+import { Box, Card, Container, createStyles, Grid, Text } from '@mantine/core'
 import { GetStaticProps, NextPage } from 'next'
-import { eventPreviews } from '~/helpers/server/contents'
-import about from '~/assets/about.webp'
+import Link from 'next/link'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
-import Article from '~/components/Home/Article'
 import Nav from '~/components/Nav'
+import { eventPreviews } from '~/helpers/server/contents'
 import { ChurchEventPreview } from '~/types'
-import Link from 'next/link'
 
 interface EventsIndexProps {
   eventPreviews: ChurchEventPreview[]

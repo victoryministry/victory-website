@@ -2,9 +2,9 @@ import { Icon } from '@iconify/react'
 import { Box, Button, createStyles, Text, Title } from '@mantine/core'
 import { NextPage } from 'next'
 import about from '~/assets/about.webp'
+import ArticleWithImage from '~/components/ArticleWithImage'
 import Footer from '~/components/Footer'
 import Header from '~/components/Header'
-import Article from '~/components/Home/Article'
 import Nav from '~/components/Nav'
 
 const useStyles = createStyles((theme) => ({}))
@@ -15,11 +15,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Nav />
-
-      <header></header>
+      <Header title="Lorem Ipsum" subtitle="Dolor sit amet" />
 
       <Box component="main">
-        <Article imageSrc={about.src} withDivider>
+        <ArticleWithImage imageSrc={about.src} withDivider>
           <Title order={2} my="md">
             Tentang Kami
           </Title>
@@ -32,8 +31,8 @@ const Home: NextPage = () => {
           <Button rightIcon={<Icon icon="carbon:arrow-right" />}>
             Selengkapnya
           </Button>
-        </Article>
-        <Article imageSrc={about.src} textOnRight>
+        </ArticleWithImage>
+        <ArticleWithImage imageSrc={about.src} textOnRight>
           <Title order={2} my="md">
             Tentang Kami
           </Title>
@@ -46,7 +45,7 @@ const Home: NextPage = () => {
           <Button rightIcon={<Icon icon="carbon:arrow-right" />}>
             Selengkapnya
           </Button>
-        </Article>
+        </ArticleWithImage>
       </Box>
 
       <Footer />
