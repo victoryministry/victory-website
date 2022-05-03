@@ -21,16 +21,19 @@ const ReflectionsIndex: NextPage<ReflectionsIndexProps> = ({
   return (
     <>
       <Nav />
-      <Header title="Renungan" />
+      <Header title="Renungan" imageHeight="60vh" />
 
       <Box component="main">
         <Container py="md">
-          <Grid>
+          <Grid columns={3}>
             {reflectionPreviews.map((reflection) => (
-              <Grid.Col key={reflection.id}>
+              <Grid.Col key={reflection.id} md={1}>
                 <Link href={`/reflections/${reflection.id}`} passHref>
-                  <Card component="a" shadow="lg">
-                    <Text weight="bold">{reflection.data.title}</Text>
+                  <Card component="a" shadow="lg" sx={{ minHeight: 160 }}>
+                    <Text weight="bold" size="xl">
+                      {reflection.data.title}
+                    </Text>
+                    <Text>{new Date(reflection.data.date).toDateString()}</Text>
                   </Card>
                 </Link>
               </Grid.Col>

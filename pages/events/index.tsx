@@ -1,4 +1,12 @@
-import { Box, Card, Container, createStyles, Grid, Text } from '@mantine/core'
+import {
+  Box,
+  Card,
+  Container,
+  createStyles,
+  Grid,
+  Image,
+  Text
+} from '@mantine/core'
 import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import Footer from '~/components/Footer'
@@ -19,16 +27,26 @@ const EventsIndex: NextPage<EventsIndexProps> = ({ eventPreviews }) => {
   return (
     <>
       <Nav />
-      <Header title="Events" />
+      <Header title="Events" imageHeight="60vh" />
 
       <Box component="main">
         <Container py="md">
-          <Grid>
+          <Grid columns={4}>
             {eventPreviews.map((event) => (
-              <Grid.Col key={event.id}>
+              <Grid.Col key={event.id} md={1}>
                 <Link href={`/events/${event.id}`} passHref>
                   <Card component="a" shadow="lg">
-                    <Text weight="bold">{event.data.title}</Text>
+                    <Card.Section>
+                      <Image
+                        src={event.data.thumbnail}
+                        alt={event.data.title}
+                        height={200}
+                      />
+                    </Card.Section>
+
+                    <Text weight="bold" mt="sm">
+                      {event.data.title}
+                    </Text>
                     <Text>{new Date(event.data.date).toDateString()}</Text>
                   </Card>
                 </Link>

@@ -54,7 +54,7 @@ const About: NextPage = () => {
       </Box>
 
       <Container py="md">
-        <Title order={2} align="center">
+        <Title order={2} align="center" mb="sm">
           Our Team
         </Title>
 
