@@ -12,6 +12,7 @@ export interface MarkdownPage extends ParsedMarkdown<{}> {}
 
 export interface ChurchEventMetadata {
   title: string
+  thumbnail: string
   date: Date | string | number
   location?: string
 }
