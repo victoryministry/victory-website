@@ -6,20 +6,6 @@ media_folder: public/uploads
 public_folder: /uploads
 site_url: 'https://victory-ministry.netlify.app/'
 collections:
-  - label: 'Reflection'
-    name: 'reflection'
-    folder: 'contents/reflections'
-    create: true
-    fields:
-      - label: 'Title'
-        name: 'title'
-        widget: 'string'
-      - label: 'Date'
-        name: 'date'
-        widget: 'datetime'
-      - label: 'Body'
-        name: 'body'
-        widget: 'markdown'
   - label: 'Event'
     name: 'event'
     folder: 'contents/events'
@@ -37,6 +23,20 @@ collections:
         name: 'location'
         widget: 'string'
         required: false
+      - label: 'Body'
+        name: 'body'
+        widget: 'markdown'
+  - label: 'Reflection'
+    name: 'reflection'
+    folder: 'contents/reflections'
+    create: true
+    fields:
+      - label: 'Title'
+        name: 'title'
+        widget: 'string'
+      - label: 'Date'
+        name: 'date'
+        widget: 'datetime'
       - label: 'Body'
         name: 'body'
         widget: 'markdown'

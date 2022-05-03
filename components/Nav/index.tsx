@@ -9,7 +9,7 @@ export const MENUS: Menu[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Events', href: '/events' },
-  { label: 'Renungan', href: '/renungan' }
+  { label: 'Reflections', href: '/reflections' }
 ]
 
 const useStyles = createStyles((theme) => ({

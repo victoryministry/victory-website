@@ -10,25 +10,19 @@ export interface Preview<T> {
 
 export interface MarkdownPage extends ParsedMarkdown<{}> {}
 
-export interface ChurchEventImage {
-  caption: string
-  image: string
-}
-
-export interface ChurchEvent {
+export interface ChurchEventMetadata {
   title: string
   date: Date | string | number
   location?: string
-  description?: string
-  images?: ChurchEventImage[]
 }
 
-export type ChurchEventPreview = Preview<ChurchEvent>
+export type ChurchEvent = ParsedMarkdown<ChurchEventMetadata>
+export type ChurchEventPreview = Preview<ChurchEventMetadata>
 
-export interface Reflection {
+export interface ReflectionMetadata {
   title: string
   date: Date | string | number
-  description?: string
 }
 
-export type ReflectionPreview = Preview<Reflection>
+export type ReflectionPreview = Preview<ReflectionMetadata>
+export type Reflection = ParsedMarkdown<ReflectionMetadata>

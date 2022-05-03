@@ -1,8 +1,8 @@
 import fs from 'fs'
 import {
-  ChurchEvent,
+  ChurchEventMetadata,
   ChurchEventPreview,
-  Reflection,
+  ReflectionMetadata,
   ReflectionPreview
 } from '~/types'
 import { cleanFileName, parseMarkdown } from './markdown'
@@ -15,7 +15,7 @@ export const eventPreviews: ChurchEventPreview[] = fs
     const { data } = parseMarkdown(eventsDir, id)
     return {
       id,
-      data: data as ChurchEvent
+      data: data as ChurchEventMetadata
     }
   })
 
@@ -26,6 +26,6 @@ export const reflectionPreviews: ReflectionPreview[] = fs
     const { data } = parseMarkdown(reflectionsDir, id)
     return {
       id,
-      data: data as Reflection
+      data: data as ReflectionMetadata
     }
   })

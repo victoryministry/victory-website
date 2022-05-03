@@ -11,9 +11,6 @@ export type ArticleProps = {
 const useStyles = createStyles(
   (theme, { textOnRight }: Pick<ArticleProps, 'textOnRight'>) => ({
     wrapper: {
-      paddingTop: theme.spacing.md,
-      paddingBottom: theme.spacing.md,
-
       [`@media (min-width: ${theme.breakpoints.md}px)`]: {
         textAlign: textOnRight ? 'right' : 'left'
       }
@@ -31,7 +28,7 @@ export default function Article({
 
   return (
     <Container>
-      <Grid className={classes.wrapper} columns={3} align="center">
+      <Grid className={classes.wrapper} py="md" columns={3} align="center">
         <Grid.Col md={2} offsetMd={textOnRight ? 1 : 0}>
           {children}
         </Grid.Col>

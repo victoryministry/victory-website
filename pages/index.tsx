@@ -15,7 +15,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Nav />
-      <Header title='Ini Title' subtitle='Ini Subtitle' />
+
+      <header></header>
 
       <Box component="main">
         <Article imageSrc={about.src} withDivider>
