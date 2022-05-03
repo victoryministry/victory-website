@@ -8,7 +8,7 @@ site_url: 'https://victory-ministry.netlify.app/'
 collections:
   - label: 'Reflection'
     name: 'reflection'
-    folder: 'contents/reflection'
+    folder: 'contents/reflections'
     create: true
     fields:
       - label: 'Title'
@@ -17,10 +17,9 @@ collections:
       - label: 'Date'
         name: 'date'
         widget: 'datetime'
-      - label: 'Description'
-        name: 'description'
-        widget: 'text'
-        required: false
+      - label: 'Body'
+        name: 'body'
+        widget: 'markdown'
   - label: 'Event'
     name: 'event'
     folder: 'contents/events'
@@ -38,20 +37,9 @@ collections:
         name: 'location'
         widget: 'string'
         required: false
-      - label: 'Description'
-        name: 'description'
-        widget: 'text'
-        required: false
-      - label: 'Images'
-        name: 'images'
-        widget: 'list'
-        required: false
-        fields:
-          - { label: 'Caption', name: 'caption', widget: 'string' }
-          - label: 'Image'
-            name: 'image'
-            format: 'DD MMM YYYY'
-            widget: 'image'
+      - label: 'Body'
+        name: 'body'
+        widget: 'markdown'
   - label: 'Page'
     name: 'page'
     files:
