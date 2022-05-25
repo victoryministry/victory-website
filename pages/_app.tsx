@@ -1,12 +1,12 @@
-import { MantineProvider } from '@mantine/core'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
+import Script from 'next/script'
 import { RecoilRoot } from 'recoil'
-import { theme } from '~/mantine.theme'
+import '~/styles/main.css'
 
 nProgress.configure({ showSpinner: false })
 
@@ -36,17 +36,25 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
+        <meta charSet="utf-8" />
         <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
+          content="width=device-width, initial-scale=1, user-scalable=no"
         />
       </Head>
 
-      <RecoilRoot>
-        <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+      <div id="page-wrapper">
+        <RecoilRoot>
           <Component {...pageProps} />
-        </MantineProvider>
-      </RecoilRoot>
+        </RecoilRoot>
+      </div>
+
+      <Script strategy="beforeInteractive" src="assets/js/jquery.min.js" />
+      <Script strategy="beforeInteractive" src="assets/js/breakpoints.min.js" />
+      <Script src="assets/js/jquery.scrollex.min.js" />
+      <Script src="assets/js/browser.min.js" />
+      <Script src="assets/js/util.js" />
+      <Script src="assets/js/main.js" />
     </>
   )
 }
