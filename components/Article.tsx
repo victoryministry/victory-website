@@ -14,7 +14,7 @@ export default function Article({
 }: ArticleProps) {
   return (
     <article>
-      <a href="#" className="image">
+      <a href={linkUrl} className="image">
         <img src={imageUrl} alt="" />
       </a>
       <h3 className="major">{title}</h3>

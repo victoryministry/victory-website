@@ -1,62 +1,38 @@
-import {
-  Box,
-  Card,
-  Container,
-  createStyles,
-  Grid,
-  Image,
-  Text
-} from '@mantine/core'
 import { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
-import Footer from '~/components/Footer'
-import Header from '~/components/Header'
-import Nav from '~/components/Nav'
-import { eventPreviews } from '~/helpers/server/contents'
-import { ChurchEventPreview } from '~/types'
+import { Article, ContentWrapper, Features, Title } from '~/components'
+import { getEventsFromQuery, notion } from '~/helpers/server'
+import { ChurchEventMetadata } from '~/types'
 
 interface EventsIndexProps {
-  eventPreviews: ChurchEventPreview[]
+  eventPreviews: ChurchEventMetadata[]
 }
 
-const useStyles = createStyles((theme) => ({}))
-
 const EventsIndex: NextPage<EventsIndexProps> = ({ eventPreviews }) => {
-  const { classes } = useStyles()
-
   return (
     <>
-      <Nav />
-      <Header title="Events" imageHeight="60vh" />
+      <Title title="Events" subtitle="Ini isinya event-event." />
 
-      <Box component="main">
-        <Container py="md">
-          <Grid columns={4}>
-            {eventPreviews.map((event) => (
-              <Grid.Col key={event.id} md={1}>
-                <Link href={`/events/${event.id}`} passHref>
-                  <Card component="a" shadow="lg">
-                    <Card.Section>
-                      <Image
-                        src={event.data.thumbnail}
-                        alt={event.data.title}
-                        height={200}
-                      />
-                    </Card.Section>
+      <ContentWrapper>
+        <h3 className="major">Vitae phasellus</h3>
+        <p>
+          Cras mattis ante fermentum, malesuada neque vitae, eleifend erat.
+          Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis
+          egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in
+          tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.
+        </p>
 
-                    <Text weight="bold" mt="sm">
-                      {event.data.title}
-                    </Text>
-                    <Text>{new Date(event.data.date).toDateString()}</Text>
-                  </Card>
-                </Link>
-              </Grid.Col>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      <Footer />
+        <Features>
+          {eventPreviews.map(({ date, id, thumbnail, name, location }) => (
+            <Article
+              imageUrl={thumbnail}
+              linkUrl={`/events/${id}`}
+              title={name}
+              key={id}>
+              <p>{new Date(date).getTime()}</p>
+            </Article>
+          ))}
+        </Features>
+      </ContentWrapper>
     </>
   )
 }
@@ -64,15 +40,13 @@ const EventsIndex: NextPage<EventsIndexProps> = ({ eventPreviews }) => {
 export default EventsIndex
 
 export const getStaticProps: GetStaticProps<EventsIndexProps> = async () => {
+  const queryResult = await notion.databases.query({
+    database_id: process.env.NOTION_EVENT_DATABASE
+  })
+
   return {
     props: {
-      eventPreviews: eventPreviews.map((event) => ({
-        ...event,
-        data: {
-          ...event.data,
-          date: new Date(event.data.date).getTime()
-        }
-      }))
+      eventPreviews: queryResult.results.map(getEventsFromQuery)
     }
   }
 }

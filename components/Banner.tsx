@@ -1,15 +1,14 @@
+import logoImage from '~/assets/logo.webp'
+
 export default function Banner() {
   return (
     <section id="banner">
       <div className="inner">
         <div className="logo">
-          <span className="icon fa-gem"></span>
+          <img className="icon" src={logoImage.src} alt="victory logo" />
         </div>
-        <h2>This is Solid State</h2>
-        <p>
-          Another free + fully responsive site template by{' '}
-          <a href="http://html5up.net">HTML5 UP</a>
-        </p>
+        <h2>Victory Ministry</h2>
+        <p>Ini Subtitle nya engga tau diisi apaan</p>
       </div>
     </section>
   )

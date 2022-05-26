@@ -1,12 +1,18 @@
+import { Icon } from '@iconify/react'
+import Link from 'next/link'
+import classes from '~/styles/header.module.css'
+
 export default function Header() {
   return (
     <>
       <header id="header" className="alt">
         <h1>
-          <a href="index.html">Solid State</a>
+          <Link href="/">Victory Ministry</Link>
         </h1>
         <nav>
-          <a href="#menu">Menu</a>
+          <a href="#menu" className={classes.menuButton}>
+            Menu <Icon icon="line-md:menu" />
+          </a>
         </nav>
       </header>
 
@@ -15,19 +21,13 @@ export default function Header() {
           <h2>Menu</h2>
           <ul className="links">
             <li>
-              <a href="index.html">Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a href="generic.html">Generic</a>
+              <Link href="/events">Events</Link>
             </li>
             <li>
-              <a href="elements.html">Elements</a>
-            </li>
-            <li>
-              <a href="#">Log In</a>
-            </li>
-            <li>
-              <a href="#">Sign Up</a>
+              <Link href="/reflections">Reflections</Link>
             </li>
           </ul>
           <a href="#" className="close">

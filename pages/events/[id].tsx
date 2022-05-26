@@ -1,38 +1,27 @@
-import { Box, Container, TypographyStylesProvider } from '@mantine/core'
-import htmr from 'htmr'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
-import Nav from '~/components/Nav'
-import { parseMarkdown, eventPreviews, eventsDir } from '~/helpers/server'
-import { ChurchEvent } from '~/types'
+import { ContentWrapper, Title } from '~/components'
+import { notionParser } from '~/helpers/client/parser'
+import { getEventsFromQuery, listMerger, notion } from '~/helpers/server'
+import { ChurchEventMetadata } from '~/types'
 
 interface EventPageParams extends ParsedUrlQuery {
   id: string
 }
 
 interface EventPageProps {
-  reflection: ChurchEvent
+  event: ChurchEventMetadata
+  blocks: any
 }
 
 const EventPage: NextPage<EventPageProps> = ({
-  reflection: {
-    data: { date, title },
-    parsed
-  }
+  event: { name, date },
+  blocks
 }) => {
   return (
     <>
-      <Nav></Nav>
-
-      <Box component="main">
-        <Container>
-          <TypographyStylesProvider>
-            <h1>{title}</h1>
-            <div>{new Date(date).toString()}</div>
-            {htmr(parsed)}
-          </TypographyStylesProvider>
-        </Container>
-      </Box>
+      <Title title={name} subtitle={new Date(date).getTime().toString()} />
+      <ContentWrapper>{notionParser(blocks)}</ContentWrapper>
     </>
   )
 }
@@ -40,8 +29,12 @@ const EventPage: NextPage<EventPageProps> = ({
 export default EventPage
 
 export const getStaticPaths: GetStaticPaths<EventPageParams> = async () => {
+  const queryResult = await notion.databases.query({
+    database_id: process.env.NOTION_EVENT_DATABASE
+  })
+
   return {
-    paths: eventPreviews.map(({ id }) => ({
+    paths: (queryResult.results as any[]).map(({ id }) => ({
       params: {
         id
       }
@@ -54,18 +47,21 @@ export const getStaticProps: GetStaticProps<
   EventPageProps,
   EventPageParams
 > = async ({ params }) => {
-  const parsed = parseMarkdown(eventsDir, params?.id!) as ChurchEvent
-  const mapped = {
-    ...parsed,
-    data: {
-      ...parsed.data,
-      date: new Date(parsed.data.date).getTime()
-    }
-  }
+  const id = params?.id!
+  const queryResult = await notion.pages.retrieve({
+    page_id: id
+  })
+
+  const blockResult = await notion.blocks.children.list({
+    block_id: id
+  })
+
+  const listMergedResult = blockResult.results.reduce(listMerger, [])
 
   return {
     props: {
-      reflection: mapped
+      event: getEventsFromQuery(queryResult),
+      blocks: listMergedResult
     }
   }
 }

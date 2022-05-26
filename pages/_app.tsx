@@ -1,11 +1,12 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
-import Script from 'next/script'
 import { RecoilRoot } from 'recoil'
+import { Footer, Header, Wrapper } from '~/components'
 import '~/styles/main.css'
 
 nProgress.configure({ showSpinner: false })
@@ -43,18 +44,26 @@ export default function App(props: AppProps) {
         />
       </Head>
 
-      <div id="page-wrapper">
-        <RecoilRoot>
-          <Component {...pageProps} />
-        </RecoilRoot>
-      </div>
+      <RecoilRoot>
+        <div id="page-wrapper">
+          <Header />
 
-      <Script strategy="beforeInteractive" src="assets/js/jquery.min.js" />
-      <Script strategy="beforeInteractive" src="assets/js/breakpoints.min.js" />
-      <Script src="assets/js/jquery.scrollex.min.js" />
-      <Script src="assets/js/browser.min.js" />
-      <Script src="assets/js/util.js" />
-      <Script src="assets/js/main.js" />
+          <Wrapper>
+            <Component {...pageProps} />
+          </Wrapper>
+          <Footer />
+        </div>
+      </RecoilRoot>
+
+      <Script strategy="beforeInteractive" src="/assets/js/jquery.min.js" />
+      <Script
+        strategy="beforeInteractive"
+        src="/assets/js/breakpoints.min.js"
+      />
+      <Script src="/assets/js/jquery.scrollex.min.js" />
+      <Script src="/assets/js/browser.min.js" />
+      <Script src="/assets/js/util.js" />
+      <Script src="/assets/js/main.js" />
     </>
   )
 }

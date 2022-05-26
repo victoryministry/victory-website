@@ -1,0 +1,5 @@
+.menuButton {
+  display: flex !important;
+  align-items: center;
+  gap: 4px;
+}
