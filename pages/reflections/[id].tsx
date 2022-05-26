@@ -71,6 +71,6 @@ export const getStaticProps: GetStaticProps<
       reflection: getReflectionFromQuery(queryResult),
       blocks: listMergedResult
     },
-    revalidate: 60
+    revalidate: 10
   }
 }

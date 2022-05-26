@@ -58,6 +58,6 @@ export const getStaticProps: GetStaticProps<EventsIndexProps> = async () => {
     props: {
       eventPreviews: queryResult.results.map(getEventFromQuery)
     },
-    revalidate: 60
+    revalidate: 10
   }
 }

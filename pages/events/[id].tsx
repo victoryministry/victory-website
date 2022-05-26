@@ -72,6 +72,6 @@ export const getStaticProps: GetStaticProps<
       event: getEventFromQuery(queryResult),
       blocks: listMergedResult
     },
-    revalidate: 60
+    revalidate: 10
   }
 }

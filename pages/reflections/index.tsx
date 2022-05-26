@@ -59,6 +59,6 @@ export const getStaticProps: GetStaticProps<
     props: {
       reflectionPreviews: queryResult.results.map(getReflectionFromQuery)
     },
-    revalidate: 60
+    revalidate: 10
   }
 }
