@@ -33,7 +33,13 @@ export default EventPage
 
 export const getStaticPaths: GetStaticPaths<EventPageParams> = async () => {
   const queryResult = await notion.databases.query({
-    database_id: process.env.NOTION_EVENT_DATABASE
+    database_id: process.env.NOTION_EVENT_DATABASE,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published'
+      }
+    }
   })
 
   return {

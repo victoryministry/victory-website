@@ -33,7 +33,13 @@ export const getStaticPaths: GetStaticPaths<
   ReflectionPageParams
 > = async () => {
   const queryResult = await notion.databases.query({
-    database_id: process.env.NOTION_REFLECTION_DATABASE
+    database_id: process.env.NOTION_REFLECTION_DATABASE,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published'
+      }
+    }
   })
 
   return {
