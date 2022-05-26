@@ -23,7 +23,7 @@ export default function Spotlight({
       className={clsx('wrapper spotlight', { alt }, `style${style}`)}>
       <div className="inner">
         <a href={linkUrl} className="image">
-          <img layout="fill" src={imageUrl} alt="" />
+          <img src={imageUrl} alt="" />
         </a>
         <div className="content">
           <h2 className="major">{title}</h2>

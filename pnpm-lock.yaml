@@ -7,13 +7,13 @@ specifiers:
   '@types/nprogress': ^0.2.0
   '@types/react': 18.0.8
   '@types/react-dom': 18.0.0
-  '@types/remarkable': ^2.0.3
   axios: ^0.27.2
   clsx: ^1.1.1
   dayjs: ^1.11.1
   eslint: 8.14.0
   eslint-config-next: 12.1.5
   next: 12.1.5
+  next-seo: ^5.4.0
   nprogress: ^0.2.0
   prettier: ^2.6.2
   prettier-config-standard: ^5.0.0
@@ -28,6 +28,7 @@ dependencies:
   clsx: 1.1.1
   dayjs: 1.11.1
   next: 12.1.5_ef5jwxihqo6n7gxfmzogljlgcm
+  next-seo: 5.4.0_iw2ijl5yq2m4rs4sgxacncq4yu
   nprogress: 0.2.0
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
@@ -37,7 +38,6 @@ devDependencies:
   '@types/nprogress': 0.2.0
   '@types/react': 18.0.8
   '@types/react-dom': 18.0.0
-  '@types/remarkable': 2.0.3
   eslint: 8.14.0
   eslint-config-next: 12.1.5_7gwklep6qnxozgqaetqbwvd7fe
   prettier: 2.6.2
@@ -237,10 +237,6 @@ packages:
     resolution: {integrity: sha512-ZK5v4bJwgXldAUA8r3q9YKfCwOqoHTK/ZqRjSeRXQrBXWouoPnS4MQtgC4AXGiiBuUu5wxrRgTlv0ktmM4P1Aw==}
     dev: true
 
-  /@types/highlight.js/9.12.4:
-    resolution: {integrity: sha512-t2szdkwmg2JJyuCM20e8kR2X59WCE5Zkl4bzm1u1Oukjm79zpbiAv+QjnwLnuuV0WHEcX2NgUItu0pAMKuOPww==}
-    dev: true
-
   /@types/json5/0.0.29:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
@@ -275,13 +271,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.0.11
-    dev: true
-
-  /@types/remarkable/2.0.3:
-    resolution: {integrity: sha512-QQUBeYApuHCNl9Br6ZoI3PlKmwZ69JHrlJktJXnjxobia9liZgsI70fm8PnCqVFAcefYK+9PGzR5L/hzCslNYQ==}
-    dependencies:
-      '@types/highlight.js': 9.12.4
-      highlight.js: 9.18.5
     dev: true
 
   /@types/scheduler/0.16.2:
@@ -1165,12 +1154,6 @@ packages:
       function-bind: 1.1.1
     dev: true
 
-  /highlight.js/9.18.5:
-    resolution: {integrity: sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==}
-    deprecated: Support has ended for 9.x series. Upgrade to @latest
-    requiresBuild: true
-    dev: true
-
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -1439,6 +1422,18 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
     dev: true
+
+  /next-seo/5.4.0_iw2ijl5yq2m4rs4sgxacncq4yu:
+    resolution: {integrity: sha512-R9DhajPwJnR/lsF2hZ8cN8uqr5CVITsRrCG1AF5+ufcaybKYOvnH8sH9MaH4/hpkps3PQ9H71S7J7SPYixAYzQ==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 12.1.5_ef5jwxihqo6n7gxfmzogljlgcm
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+    dev: false
 
   /next/12.1.5_ef5jwxihqo6n7gxfmzogljlgcm:
     resolution: {integrity: sha512-YGHDpyfgCfnT5GZObsKepmRnne7Kzp7nGrac07dikhutWQug7hHg85/+sPJ4ZW5Q2pDkb+n0FnmLkmd44htIJQ==}
