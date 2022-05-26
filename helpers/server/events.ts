@@ -1,6 +1,6 @@
 import { ChurchEventMetadata } from '~/types'
 
-export const getEventsFromQuery = ({
+export const getEventFromQuery = ({
   id,
   properties
 }: any): ChurchEventMetadata => ({

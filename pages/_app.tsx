@@ -5,7 +5,6 @@ import Script from 'next/script'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
-import { RecoilRoot } from 'recoil'
 import { Footer, Header, Wrapper } from '~/components'
 import '~/styles/main.css'
 
@@ -44,16 +43,14 @@ export default function App(props: AppProps) {
         />
       </Head>
 
-      <RecoilRoot>
-        <div id="page-wrapper">
-          <Header />
+      <div id="page-wrapper">
+        <Header />
 
-          <Wrapper>
-            <Component {...pageProps} />
-          </Wrapper>
-          <Footer />
-        </div>
-      </RecoilRoot>
+        <Wrapper>
+          <Component {...pageProps} />
+        </Wrapper>
+        <Footer />
+      </div>
 
       <Script strategy="beforeInteractive" src="/assets/js/jquery.min.js" />
       <Script

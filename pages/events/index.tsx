@@ -1,6 +1,7 @@
+import dayjs from 'dayjs'
 import { GetStaticProps, NextPage } from 'next'
 import { Article, ContentWrapper, Features, Title } from '~/components'
-import { getEventsFromQuery, notion } from '~/helpers/server'
+import { getEventFromQuery, notion } from '~/helpers/server'
 import { ChurchEventMetadata } from '~/types'
 
 interface EventsIndexProps {
@@ -28,7 +29,10 @@ const EventsIndex: NextPage<EventsIndexProps> = ({ eventPreviews }) => {
               linkUrl={`/events/${id}`}
               title={name}
               key={id}>
-              <p>{new Date(date).getTime()}</p>
+              <p>
+                {location && `${location}, `}
+                {dayjs(date).format('DD-MM-YYYY')}
+              </p>
             </Article>
           ))}
         </Features>
@@ -41,12 +45,18 @@ export default EventsIndex
 
 export const getStaticProps: GetStaticProps<EventsIndexProps> = async () => {
   const queryResult = await notion.databases.query({
-    database_id: process.env.NOTION_EVENT_DATABASE
+    database_id: process.env.NOTION_EVENT_DATABASE,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published'
+      }
+    }
   })
 
   return {
     props: {
-      eventPreviews: queryResult.results.map(getEventsFromQuery)
+      eventPreviews: queryResult.results.map(getEventFromQuery)
     }
   }
 }

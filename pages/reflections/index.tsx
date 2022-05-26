@@ -1,48 +1,41 @@
-import { Box, Card, Container, createStyles, Grid, Text } from '@mantine/core'
+import dayjs from 'dayjs'
 import { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
-import Footer from '~/components/Footer'
-import Header from '~/components/Header'
-import Nav from '~/components/Nav'
-import { reflectionPreviews } from '~/helpers/server/contents'
-import { ReflectionPreview } from '~/types'
+import { Article, ContentWrapper, Features, Title } from '~/components'
+import { getReflectionFromQuery, notion } from '~/helpers/server'
+import { ReflectionMetadata } from '~/types'
 
 interface ReflectionsIndexProps {
-  reflectionPreviews: ReflectionPreview[]
+  reflectionPreviews: ReflectionMetadata[]
 }
-
-const useStyles = createStyles((theme) => ({}))
 
 const ReflectionsIndex: NextPage<ReflectionsIndexProps> = ({
   reflectionPreviews
 }) => {
-  const { classes } = useStyles()
-
   return (
     <>
-      <Nav />
-      <Header title="Renungan" imageHeight="60vh" />
+      <Title title="Reflections" subtitle="Ini isinya event-event." />
 
-      <Box component="main">
-        <Container py="md">
-          <Grid columns={3}>
-            {reflectionPreviews.map((reflection) => (
-              <Grid.Col key={reflection.id} md={1}>
-                <Link href={`/reflections/${reflection.id}`} passHref>
-                  <Card component="a" shadow="lg" sx={{ minHeight: 160 }}>
-                    <Text weight="bold" size="xl">
-                      {reflection.data.title}
-                    </Text>
-                    <Text>{new Date(reflection.data.date).toDateString()}</Text>
-                  </Card>
-                </Link>
-              </Grid.Col>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
+      <ContentWrapper>
+        <h3 className="major">Vitae phasellus</h3>
+        <p>
+          Cras mattis ante fermentum, malesuada neque vitae, eleifend erat.
+          Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis
+          egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in
+          tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.
+        </p>
 
-      <Footer />
+        <Features>
+          {reflectionPreviews.map(({ date, id, title }) => (
+            <Article
+              imageUrl={''}
+              linkUrl={`/reflections/${id}`}
+              title={title}
+              key={id}>
+              <p>{dayjs(date).format('DD-MM-YYYY')}</p>
+            </Article>
+          ))}
+        </Features>
+      </ContentWrapper>
     </>
   )
 }
@@ -52,15 +45,19 @@ export default ReflectionsIndex
 export const getStaticProps: GetStaticProps<
   ReflectionsIndexProps
 > = async () => {
+  const queryResult = await notion.databases.query({
+    database_id: process.env.NOTION_REFLECTION_DATABASE,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published'
+      }
+    }
+  })
+
   return {
     props: {
-      reflectionPreviews: reflectionPreviews.map((reflection) => ({
-        ...reflection,
-        data: {
-          ...reflection.data,
-          date: new Date(reflection.data.date).getTime()
-        }
-      }))
+      reflectionPreviews: queryResult.results.map(getReflectionFromQuery)
     }
   }
 }

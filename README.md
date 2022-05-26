@@ -11,5 +11,4 @@
 
 ## Stock Photos
 
-- [Header Background](https://www.pexels.com/photo/group-of-people-raising-hands-silhouette-photography-952437/)
-- [About Section](https://www.pexels.com/photo/bible-blur-christ-christianity-372326/)
+- [Background Image](https://www.pexels.com/photo/bible-blur-christ-christianity-372326/)

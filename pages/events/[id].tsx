@@ -1,8 +1,9 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentWrapper, Title } from '~/components'
+import { useBackgroundEffect } from '~/helpers/client/events'
 import { notionParser } from '~/helpers/client/parser'
-import { getEventsFromQuery, listMerger, notion } from '~/helpers/server'
+import { getEventFromQuery, listMerger, notion } from '~/helpers/server'
 import { ChurchEventMetadata } from '~/types'
 
 interface EventPageParams extends ParsedUrlQuery {
@@ -15,9 +16,11 @@ interface EventPageProps {
 }
 
 const EventPage: NextPage<EventPageProps> = ({
-  event: { name, date },
+  event: { name, date, thumbnail },
   blocks
 }) => {
+  useBackgroundEffect(thumbnail)
+
   return (
     <>
       <Title title={name} subtitle={new Date(date).getTime().toString()} />
@@ -60,7 +63,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      event: getEventsFromQuery(queryResult),
+      event: getEventFromQuery(queryResult),
       blocks: listMergedResult
     }
   }

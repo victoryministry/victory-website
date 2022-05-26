@@ -4,6 +4,10 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+:root {
+  --bg-image: url('/images/bg.webp');
+}
+
 html,
 body,
 div,
@@ -191,7 +195,7 @@ body {
       rgba(46, 49, 65, 0.8),
       rgba(46, 49, 65, 0.8)
     ),
-    url('/uploads/event-testing-guys/chad-radahn.jpg');
+    var(--bg-image);
   background-size: auto, cover;
   background-attachment: fixed, fixed;
   background-position: center, center;
@@ -3530,7 +3534,7 @@ body.is-menu-visible #menu .inner {
         rgba(46, 49, 65, 0.8),
         rgba(46, 49, 65, 0.8)
       ),
-      url('/uploads/event-testing-guys/chad-radahn.jpg');
+      var(--bg-image);
     background-size: auto, cover;
     background-position: center, center;
     margin-bottom: -6.5em;
@@ -3639,7 +3643,7 @@ body.is-preload #banner p {
         rgba(46, 49, 65, 0.8),
         rgba(46, 49, 65, 0.8)
       ),
-      url('/uploads/event-testing-guys/chad-radahn.jpg');
+      var(--bg-image);
     background-size: auto, cover;
     background-position: center, 0% 30%;
     margin-bottom: -6.5em;
@@ -4135,7 +4139,7 @@ body.is-preload #banner p {
         rgba(46, 49, 65, 0.8),
         rgba(46, 49, 65, 0.8)
       ),
-      url('/uploads/event-testing-guys/chad-radahn.jpg');
+      var(--bg-image);
     background-size: auto, cover;
     background-position: center, center;
     margin-top: -6.5em;

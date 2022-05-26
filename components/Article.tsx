@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 export type ArticleProps = PropsWithChildren<{
   title: string
   linkUrl: string
-  imageUrl: string
+  imageUrl?: string
 }>
 
 export default function Article({
@@ -14,9 +14,11 @@ export default function Article({
 }: ArticleProps) {
   return (
     <article>
-      <a href={linkUrl} className="image">
-        <img src={imageUrl} alt="" />
-      </a>
+      {imageUrl && (
+        <a href={linkUrl} className="image">
+          <img src={imageUrl} alt="" />
+        </a>
+      )}
       <h3 className="major">{title}</h3>
       {children}
       <a href={linkUrl} className="special">
