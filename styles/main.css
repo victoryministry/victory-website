@@ -3268,7 +3268,6 @@ button:disabled,
 
 @media screen and (max-width: 480px) {
   #header nav a[href='#menu'] {
-    width: 4em;
     white-space: nowrap;
     text-indent: 4em;
     position: relative;
