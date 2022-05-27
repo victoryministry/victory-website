@@ -29,6 +29,9 @@ export default function Header() {
             <li>
               <Link href="/reflections">Reflections</Link>
             </li>
+            <li>
+              <Link href="/about">About Us</Link>
+            </li>
           </ul>
           <a href="#" className="close">
             Close
