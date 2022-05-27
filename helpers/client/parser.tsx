@@ -56,6 +56,7 @@ export const notionParser = (blocks: any[]) => {
       case 'image':
         return (
           <img
+            loading="lazy"
             className="image fit"
             key={block.id}
             src={block[block.type].file.url}

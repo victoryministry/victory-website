@@ -3,7 +3,8 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentWrapper, Title } from '~/components'
 import { notionParser } from '~/helpers/client'
-import { getReflectionFromQuery, listMerger, notion } from '~/helpers/server'
+import { getReflectionFromQuery } from '~/helpers/server'
+import { getReflection, getReflections } from '~/services/server'
 import { ReflectionMetadata } from '~/types'
 
 interface ReflectionPageParams extends ParsedUrlQuery {
@@ -21,7 +22,10 @@ const ReflectionPage: NextPage<ReflectionPageProps> = ({
 }) => {
   return (
     <>
-      <Title title={title} subtitle={dayjs(date).format('DD-MM-YYYY')} />
+      <Title
+        title={title}
+        subtitle={dayjs(date).format('dddd, DD MMMM YYYY')}
+      />
       <ContentWrapper>{notionParser(blocks)}</ContentWrapper>
     </>
   )
@@ -32,15 +36,7 @@ export default ReflectionPage
 export const getStaticPaths: GetStaticPaths<
   ReflectionPageParams
 > = async () => {
-  const queryResult = await notion.databases.query({
-    database_id: process.env.NOTION_REFLECTION_DATABASE,
-    filter: {
-      property: 'Status',
-      select: {
-        equals: 'Published'
-      }
-    }
-  })
+  const queryResult = await getReflections()
 
   return {
     paths: (queryResult.results as any[]).map(({ id }) => ({
@@ -57,19 +53,11 @@ export const getStaticProps: GetStaticProps<
   ReflectionPageParams
 > = async ({ params }) => {
   const id = params?.id!
-  const queryResult = await notion.pages.retrieve({
-    page_id: id
-  })
-
-  const blockResult = await notion.blocks.children.list({
-    block_id: id
-  })
-
-  const listMergedResult = blockResult.results.reduce(listMerger, [])
+  const { mergedBlocks, page } = await getReflection(id)
   return {
     props: {
-      reflection: getReflectionFromQuery(queryResult),
-      blocks: listMergedResult
+      reflection: getReflectionFromQuery(page),
+      blocks: mergedBlocks
     },
     revalidate: 10
   }

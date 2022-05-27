@@ -1,9 +1,11 @@
+import dayjs from 'dayjs'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentWrapper, Title } from '~/components'
 import { useBackgroundEffect } from '~/helpers/client/events'
 import { notionParser } from '~/helpers/client/parser'
-import { getEventFromQuery, listMerger, notion } from '~/helpers/server'
+import { getEventFromQuery } from '~/helpers/server'
+import { getEvent, getEvents } from '~/services/server'
 import { ChurchEventMetadata } from '~/types'
 
 interface EventPageParams extends ParsedUrlQuery {
@@ -16,14 +18,19 @@ interface EventPageProps {
 }
 
 const EventPage: NextPage<EventPageProps> = ({
-  event: { name, date, thumbnail },
+  event: { name, date, thumbnail, location },
   blocks
 }) => {
   useBackgroundEffect(thumbnail)
 
   return (
     <>
-      <Title title={name} subtitle={new Date(date).getTime().toString()} />
+      <Title
+        title={name}
+        subtitle={
+          location && `${location}, ${dayjs(date).format('DD MMMM YYYY')}`
+        }
+      />
       <ContentWrapper>{notionParser(blocks)}</ContentWrapper>
     </>
   )
@@ -32,18 +39,10 @@ const EventPage: NextPage<EventPageProps> = ({
 export default EventPage
 
 export const getStaticPaths: GetStaticPaths<EventPageParams> = async () => {
-  const queryResult = await notion.databases.query({
-    database_id: process.env.NOTION_EVENT_DATABASE,
-    filter: {
-      property: 'Status',
-      select: {
-        equals: 'Published'
-      }
-    }
-  })
+  const queryResult = await getEvents()
 
   return {
-    paths: (queryResult.results as any[]).map(({ id }) => ({
+    paths: queryResult.results.map(({ id }) => ({
       params: {
         id
       }
@@ -57,20 +56,12 @@ export const getStaticProps: GetStaticProps<
   EventPageParams
 > = async ({ params }) => {
   const id = params?.id!
-  const queryResult = await notion.pages.retrieve({
-    page_id: id
-  })
-
-  const blockResult = await notion.blocks.children.list({
-    block_id: id
-  })
-
-  const listMergedResult = blockResult.results.reduce(listMerger, [])
+  const { mergedBlocks, page } = await getEvent(id)
 
   return {
     props: {
-      event: getEventFromQuery(queryResult),
-      blocks: listMergedResult
+      event: getEventFromQuery(page),
+      blocks: mergedBlocks
     },
     revalidate: 10
   }

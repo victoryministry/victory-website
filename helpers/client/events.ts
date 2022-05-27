@@ -8,5 +8,5 @@ export const useBackgroundEffect = (bgUrl: string) => {
         '--bg-image',
         `url('/images/bg.webp')`
       )
-  })
+  }, [bgUrl])
 }

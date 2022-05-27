@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+import 'dayjs/locale/id'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -8,6 +10,7 @@ import { useEffect } from 'react'
 import { Footer, Header, Wrapper } from '~/components'
 import '~/styles/main.css'
 
+dayjs.locale('id')
 nProgress.configure({ showSpinner: false })
 
 export default function App(props: AppProps) {
