@@ -13,6 +13,20 @@ export const getEvents = async () => {
   })
 }
 
+export const getLatestEvents = async (count: number = 2) => {
+  return notion.databases.query({
+    database_id: process.env.NOTION_EVENT_DATABASE,
+    filter: {
+      property: 'Status',
+      select: {
+        equals: 'Published'
+      }
+    },
+    sorts: [{ property: 'Date', direction: 'descending' }],
+    page_size: count
+  })
+}
+
 export const getEvent = async (id: string) => {
   const page = await notion.pages.retrieve({
     page_id: id
