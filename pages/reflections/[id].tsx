@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentWrapper, Title } from '~/components'
 import { notionParser } from '~/helpers/client'
@@ -22,6 +23,8 @@ const ReflectionPage: NextPage<ReflectionPageProps> = ({
 }) => {
   return (
     <>
+      <NextSeo title={title} />
+
       <Title
         title={title}
         subtitle={dayjs(date).format('dddd, DD MMMM YYYY')}

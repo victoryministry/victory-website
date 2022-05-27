@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentWrapper, Title } from '~/components'
 import { useBackgroundEffect } from '~/helpers/client/events'
@@ -25,6 +26,8 @@ const EventPage: NextPage<EventPageProps> = ({
 
   return (
     <>
+      <NextSeo title={name} />
+
       <Title
         title={name}
         subtitle={

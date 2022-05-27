@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { ContentWrapper } from '~/components'
 import Article from '~/components/Article'
 import Banner from '~/components/Banner'
@@ -8,6 +9,8 @@ import Spotlight from '~/components/Spotlight'
 const Home: NextPage = () => {
   return (
     <>
+      <NextSeo title="Home" />
+
       <Banner />
 
       <Spotlight

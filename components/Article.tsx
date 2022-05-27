@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react'
+import Link from 'next/link'
 
 export type ArticleProps = PropsWithChildren<{
   title: string
@@ -15,15 +16,21 @@ export default function Article({
   return (
     <article>
       {imageUrl && (
-        <a href={linkUrl} className="image">
-          <img src={imageUrl} alt="" />
-        </a>
+        <Link href={linkUrl}>
+          <a className="image">
+            <img src={imageUrl} alt="" />
+          </a>
+        </Link>
       )}
-      <h3 className="major">{title}</h3>
+      <Link href={linkUrl}>
+        <a>
+          <h3 className="major">{title}</h3>
+        </a>
+      </Link>
       {children}
-      <a href={linkUrl} className="special">
-        Learn more
-      </a>
+      <Link href={linkUrl}>
+        <a className="special">Learn more</a>
+      </Link>
     </article>
   )
 }

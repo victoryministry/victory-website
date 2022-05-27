@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { GetStaticProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { Article, ContentWrapper, Features, Title } from '~/components'
 import { getReflectionFromQuery, notion } from '~/helpers/server'
 import { ReflectionMetadata } from '~/types'
@@ -13,6 +14,8 @@ const ReflectionsIndex: NextPage<ReflectionsIndexProps> = ({
 }) => {
   return (
     <>
+      <NextSeo title="Reflections" />
+
       <Title title="Reflections" subtitle="Ini isinya event-event." />
 
       <ContentWrapper>

@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { GetStaticProps, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import { Article, ContentWrapper, Features, Title } from '~/components'
 import { getEventFromQuery } from '~/helpers/server'
 import { getEvents } from '~/services/server'
@@ -12,6 +13,8 @@ interface EventsIndexProps {
 const EventsIndex: NextPage<EventsIndexProps> = ({ eventPreviews }) => {
   return (
     <>
+      <NextSeo title="Events" />
+
       <Title title="Events" subtitle="Ini isinya event-event." />
 
       <ContentWrapper>

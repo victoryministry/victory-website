@@ -1,13 +1,14 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
+import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
 import { Footer, Header, Wrapper } from '~/components'
+import defaultSEO from '~/next-seo.config'
 import '~/styles/main.css'
 
 dayjs.locale('id')
@@ -38,13 +39,7 @@ export default function App(props: AppProps) {
 
   return (
     <>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, user-scalable=no"
-        />
-      </Head>
+      <DefaultSeo {...defaultSEO} />
 
       <div id="page-wrapper">
         <Header />
