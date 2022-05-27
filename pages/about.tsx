@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { ContentWrapper, Title } from '~/components'
 
-const Home: NextPage = () => {
+const About: NextPage = () => {
   return (
     <>
       <NextSeo title="About" />
@@ -42,4 +42,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default About
