@@ -10,6 +10,7 @@ import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
 import { Footer, Header, Wrapper } from '~/components'
 import defaultSEO from '~/next-seo.config'
+// import '~/services/client/firebase'
 import '~/styles/main.css'
 
 dayjs.locale('id')

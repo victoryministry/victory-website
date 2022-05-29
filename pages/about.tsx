@@ -10,7 +10,6 @@ interface AboutProps {
 }
 
 const About: NextPage<AboutProps> = ({ members }) => {
-  console.log(members)
   return (
     <>
       <NextSeo title="About" />
