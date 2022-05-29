@@ -6,13 +6,13 @@ export default function Footer() {
     <section id="footer">
       <div className="inner">
         <div className={classes.socials}>
-          <a href="tono">
+          <a href="https://www.instagram.com/victoryministrybogor/">
             <Icon icon="fa-instagram" /> Instagram
           </a>
-          <a href="tono">
+          <a href="https://www.youtube.com/channel/UCuuzNoA8UDDOkFaBzIJ_JEw">
             <Icon icon="fa-youtube" /> Youtube
           </a>
-          <a href="tono">
+          <a href="mailto:victoryministrybgr@gmail.com">
             <Icon icon="fa-envelope-o" /> E-Mail
           </a>
         </div>
