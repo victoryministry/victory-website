@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import Link from 'next/link'
 import { ContentWrapper } from '~/components'
 import Article from '~/components/Article'
 import Banner from '~/components/Banner'
@@ -88,9 +89,9 @@ const Home: NextPage<HomeProps> = ({ latestEventPreviews }) => {
 
         <ul className="actions">
           <li>
-            <a href="#" className="button">
-              Browse All
-            </a>
+            <Link href="/events">
+              <a className="button">Browse All</a>
+            </Link>
           </li>
         </ul>
       </ContentWrapper>
