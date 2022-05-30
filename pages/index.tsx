@@ -23,42 +23,42 @@ const Home: NextPage<HomeProps> = ({ latestEventPreviews }) => {
       <Banner />
 
       <Spotlight
-        title="Tono Bangun Tenda"
+        title="Our Church"
         imageUrl="/images/pic01.jpg"
         linkUrl="/ini-nomor-1"
         style="1">
         <p>
-          Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis
-          ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id
-          tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam
-          ultrices, neque et faucibus viverra, ex nulla cursus.
+          We are a multi-cultural and multi-generational church committed to
+          reaching the city of Houston. We exist to help you and your family
+          grow closer to your God-given purpose. Everyone has a first step to
+          take in their journey. Will you take your first step this Sunday?
         </p>
       </Spotlight>
 
       <Spotlight
-        title="Tono Bangun 2"
+        title="Watch Live"
         imageUrl="/images/pic02.jpg"
         linkUrl="/ini-nomor-2"
         style="2"
         alt>
         <p>
-          Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis
-          ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id
-          tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam
-          ultrices, neque et faucibus viverra, ex nulla cursus.
+          {"Can't"} make it this Sunday or would like to share one of our
+          services with a friend? Click the button below to watch our service
+          live or view our service on Facebook LIVE and YouTube. You can also
+          subscribe to our podcast.
         </p>
       </Spotlight>
 
       <Spotlight
-        title="Tono Bangun 3"
+        title="Watch On Demand"
         imageUrl="/images/pic03.jpg"
         linkUrl="/ini-nomor-3"
         style="3">
         <p>
-          Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis
-          ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id
-          tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam
-          ultrices, neque et faucibus viverra, ex nulla cursus.
+          {"Can't"} make it this Sunday or would like to share one of our
+          services with a friend? Click the button below to watch our service
+          live or view our service on Facebook LIVE and YouTube. You can also
+          subscribe to our podcast.
         </p>
       </Spotlight>
 
